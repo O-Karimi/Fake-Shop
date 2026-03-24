@@ -7,6 +7,19 @@ const message = ref('Hello Vue!');
     { id: 2, name: 'Product 2', price: 20 },
     { id: 3, name: 'Product 3', price: 30 }
   ]);
+  const newProductName = ref('');
+  const newProductPrice = ref(0);
+
+  function addProduct() {
+    const newProduct = {
+      id: products.value.length + 1,
+      name: newProductName.value,
+      price: newProductPrice.value
+    };
+    products.value.push(newProduct);
+    newProductName.value = '';
+    newProductPrice.value = 0;
+  }
 </script>
 
 <template>
@@ -27,10 +40,19 @@ const message = ref('Hello Vue!');
       <section>
           <h2>About</h2>
           <p>This is a simple website template.</p>
+          
+          
           <h2>Most Sold Products</h2>
           <ul style="list-style-type: none; padding: 0; display: inline;">
               <li v-for="product in products" :key="product.id" style="display: inline;">{{ product.name }}: ${{ product.price }} ||||  </li>
           </ul>
+          
+          <form @submit="addProduct">
+              <input type="text" v-model="newProductName" placeholder="Product Name" required><br> 
+              <input type="number" v-model="newProductPrice" placeholder="Product Price" required><br>
+              <button type="submit">Add Product</button>
+          </form>
+
           <h2>Contact</h2>
           <p>Email: info@fakestore.com</p>
           <p>Phone: (123) 456-7890</p>
