@@ -1,6 +1,7 @@
-const express = require('express');
+import Product from '../models/Product.js';
+import express from 'express';
+
 const router = express.Router();
-const Product = require('../models/Product');
 
 // @route   GET /api/products
 // @desc    Get all products
@@ -84,5 +85,4 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// CRITICAL: This must be the very last line of the file!
-module.exports = router;
+export default router;

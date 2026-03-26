@@ -1,6 +1,6 @@
-const express = require('express');
+import Order from '../models/Order.js';
+import express from 'express';
 const router = express.Router();
-const Order = require('../models/Order');
 
 // @route   POST /api/orders
 // @desc    Create a new order (Triggers after successful PayPal payment)
@@ -36,4 +36,4 @@ router.get('/:email', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
