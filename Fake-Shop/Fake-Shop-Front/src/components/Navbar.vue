@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
+import { useCartStore } from '../stores/cart';
 
 const router = useRouter();
+const cartStore = useCartStore();
 const globalSearch = ref('');
 
 const submitSearch = () => {
@@ -30,8 +32,11 @@ const submitSearch = () => {
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/products">Products</RouterLink>
       <RouterLink to="/add-product">Add Product</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
+<!--       <RouterLink to="/about">About</RouterLink>
       <RouterLink to="/contact">Contact</RouterLink>
+ -->      <RouterLink to="/cart" class="cart-link">
+        Cart ({{ cartStore.totalItems }})
+      </RouterLink>
   </nav>
 
 </template>
@@ -66,4 +71,8 @@ const submitSearch = () => {
     nav a:hover {
         background-color: #555;
     }
+    .cart-link {
+    color: #e67e22 !important;
+    font-weight: 900 !important;
+}
 </style>

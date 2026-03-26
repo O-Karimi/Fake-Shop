@@ -2,8 +2,10 @@
 import { ref, onMounted } from 'vue';
 import { useRoute, RouterLink } from 'vue-router';
 import api from '../api';
+import { useCartStore } from '../stores/cart';
 
 const route = useRoute();
+const cartStore = useCartStore();
 const product = ref(null);
 const loading = ref(true);
 const error = ref('');
@@ -36,9 +38,9 @@ onMounted(async () => {
         <p class="category">Category: {{ product.category }}</p>
         <p class="price">${{ product.price.toFixed(2) }}</p>
         <p class="description">{{ product.description }}</p>
-        
-        <button class="add-to-cart-btn">Add to Cart</button>
-        
+
+        <button @click="cartStore.addToCart(product)" class="add-to-cart-btn">Add to Cart</button>
+
         <br><br>
         <RouterLink to="/products" class="back-link">← Back to Products</RouterLink>
       </div>
