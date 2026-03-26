@@ -22,6 +22,11 @@ const routes = [
     component: () => import("../views/addProduct.vue")
   },
   {
+    path: '/products/:id', // The ':id' becomes route.params.id in our component
+    name: 'product-details',
+    component: () => import("../views/productDetails.vue")
+  },
+  {
     path: "/contact",
     name: "Contact",
     component: () => import("../views/Contact.vue"),
