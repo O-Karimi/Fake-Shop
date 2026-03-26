@@ -1,3 +1,7 @@
+import userRoutes from './routes/userRoutes';
+import productRoutes from './routes/productRoutes';
+import orderRoutes from './routes/orderRoutes';
+
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -13,9 +17,7 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Successfully connected to MongoDB!'))
   .catch((error) => console.error('MongoDB connection error:', error));
 
-const productRoutes = require('./routes/productRoutes');
-const orderRoutes = require('./routes/orderRoutes');
-
+app.use('/api/users', userRoutes);  
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 
