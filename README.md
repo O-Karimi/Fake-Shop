@@ -64,8 +64,9 @@ Open a new terminal window, navigate to the frontend directory, and install the 
 ```Bash
 cd frontend
 npm install
-Start the Vue development server:
 ```
+
+Start the Vue development server:
 ```Bash
 npm run dev
 ```
