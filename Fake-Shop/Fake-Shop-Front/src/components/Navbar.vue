@@ -32,9 +32,10 @@ const submitSearch = () => {
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/products">Products</RouterLink>
       <RouterLink to="/add-product">Add Product</RouterLink>
+      <RouterLink to="/orders">My Orders</RouterLink>
 <!--       <RouterLink to="/about">About</RouterLink>
       <RouterLink to="/contact">Contact</RouterLink>
- -->      <RouterLink to="/cart" class="cart-link">
+ -->  <RouterLink to="/cart" class="cart-link">
         Cart ({{ cartStore.totalItems }})
       </RouterLink>
   </nav>

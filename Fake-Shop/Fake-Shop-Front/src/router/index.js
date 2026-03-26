@@ -40,7 +40,11 @@ const routes = [
     path: '/checkout',
     name: 'checkout',
     component: () => import("../views/Checkout.vue")
-  }
+  },
+  { path: '/orders', 
+    name: 'orders', 
+    component: () => import("../views/OrderHistory.vue") 
+  },
 ];
 
 const router = createRouter({
