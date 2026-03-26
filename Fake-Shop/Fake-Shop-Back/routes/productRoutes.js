@@ -5,8 +5,19 @@ const Product = require('../models/Product');
 // @route   GET /api/products
 // @desc    Get all products
 router.get('/', async (req, res) => {
-  try {
-    const products = await Product.find();
+try {
+    const keyword = req.query.search;
+    let query = {}; 
+
+    if (keyword) {
+      query = {
+        $or: [
+          { title: { $regex: keyword, $options: 'i' } },
+          { description: { $regex: keyword, $options: 'i' } }
+        ]
+      };
+    }
+    const products = await Product.find(query);
     res.json(products);
   } catch (error) {
     res.status(500).json({ message: 'Server Error fetching products', error: error.message });
