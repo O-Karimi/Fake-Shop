@@ -2,12 +2,22 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
 
+// @route   GET /api/products
+// @desc    Get all products
+router.get('/', async (req, res) => {
+  try {
+    const products = await Product.find();
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: 'Server Error fetching products', error: error.message });
+  }
+});
+
 // @route   GET /api/products/:id
-// @desc    Get a single product by its ID (Read)
+// @desc    Get a single product by its ID
 router.get('/:id', async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id); 
-    
+    const product = await Product.findById(req.params.id);
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
     }
@@ -17,12 +27,24 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// @route   POST /api/products
+// @desc    Create a new product
+router.post('/', async (req, res) => {
+  try {
+    const newProduct = new Product(req.body);
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
+  } catch (error) {
+    res.status(400).json({ message: 'Error saving product', error: error.message });
+  }
+});
+
 // @route   PUT /api/products/:id
-// @desc    Update a product (Update)
+// @desc    Update a product
 router.put('/:id', async (req, res) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
-      req.params.id, 
+      req.params.id,
       req.body,
       { new: true }
     );
@@ -37,11 +59,11 @@ router.put('/:id', async (req, res) => {
 });
 
 // @route   DELETE /api/products/:id
-// @desc    Delete a product (Delete)
+// @desc    Delete a product
 router.delete('/:id', async (req, res) => {
   try {
     const deletedProduct = await Product.findByIdAndDelete(req.params.id);
-    
+
     if (!deletedProduct) {
       return res.status(404).json({ message: 'Product not found' });
     }
@@ -51,4 +73,5 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// CRITICAL: This must be the very last line of the file!
 module.exports = router;

@@ -1,0 +1,19 @@
+### 1. Test Getting All Products
+GET http://localhost:5000/api/products
+Content-Type: application/json
+
+### 2. Test Creating a New Product
+POST http://localhost:5000/api/products
+Content-Type: application/json
+
+{
+  "title": "Wireless Gaming Mouse",
+  "description": "Ergonomic wireless mouse with RGB lighting and low latency.",
+  "price": 49.99,
+  "imageUrl": "https://dummyimage.com/400x400/000/fff&text=Mouse",
+  "category": "Electronics"
+}
+
+### 3. Test Getting All Products Again
+GET http://localhost:5000/api/products
+Content-Type: application/json
