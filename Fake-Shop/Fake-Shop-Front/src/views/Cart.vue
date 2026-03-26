@@ -45,7 +45,7 @@ const cartStore = useCartStore();
           <span>${{ cartStore.cartTotal.toFixed(2) }}</span>
         </div>
         
-        <button class="checkout-btn">Proceed to Checkout</button>
+        <RouterLink to="/checkout" class="checkout-btn">Proceed to Checkout</RouterLink>
         
         <button @click="cartStore.clearCart" class="clear-btn">Empty Cart</button>
       </div>

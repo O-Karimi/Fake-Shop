@@ -11,6 +11,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@paypal/paypal-js": "^9.5.0",
     "axios": "^1.13.6",
     "pinia": "^3.0.4",
     "vue": "^3.5.30",
