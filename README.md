@@ -76,8 +76,6 @@ Create an Account: Click "Sign Up" to create a mock user profile, then log in.
 
 Add to Cart: Add a few imaginary items to your shopping cart.
 
-Checkout: Proceed to the cart and click "Checkout". Use the PayPal Sandbox UI (you can use the universal test card 4242 4242... or a developer sandbox account) to complete the mock purchase.
-
 Verify Order: After a successful transaction, click "My Orders" in the navigation bar to see your newly created database entry, complete with the PayPal Transaction ID.
 
 Disclaimer: No actual money is processed in this application. All items are fictional, and all transactions are routed strictly through PayPal's Sandbox environment.
