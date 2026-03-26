@@ -53,14 +53,15 @@ const handleLogout = () => {
       <template v-if="authStore.isAuthenticated">
         <RouterLink to="/add-product">Add Product</RouterLink>
         <RouterLink to="/orders">My Orders</RouterLink>
-        <RouterLink to="/profile">Profile</RouterLink>
-      </template>
+<!--         <RouterLink to="/profile">Profile</RouterLink>
+ -->      
 <!--       <RouterLink to="/register">Sign Up</RouterLink>
  --><!--       <RouterLink to="/about">About</RouterLink>
       <RouterLink to="/contact">Contact</RouterLink>
  -->  <RouterLink to="/cart" class="cart-link">
         Cart ({{ cartStore.totalItems }})
       </RouterLink>
+      </template>
   </nav>
 
 </template>

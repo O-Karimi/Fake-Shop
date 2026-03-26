@@ -3,9 +3,11 @@ import { ref, onMounted } from 'vue';
 import { useRoute, RouterLink } from 'vue-router';
 import api from '../api';
 import { useCartStore } from '../stores/cart';
+import { useAuthStore } from '../stores/auth';
 
 const route = useRoute();
 const cartStore = useCartStore();
+const authStore = useAuthStore();
 const product = ref(null);
 const loading = ref(true);
 const error = ref('');
@@ -39,8 +41,12 @@ onMounted(async () => {
         <p class="price">${{ product.price.toFixed(2) }}</p>
         <p class="description">{{ product.description }}</p>
 
-        <button @click="cartStore.addToCart(product)" class="add-to-cart-btn">Add to Cart</button>
-
+        <template v-if="authStore.isAuthenticated">
+          <button @click="cartStore.addToCart(product)" class="add-to-cart-btn">Add to Cart</button>
+        </template>
+        <template v-else>
+          <p><em>Login to add this product to your cart.</em></p>
+        </template>
         <br><br>
         <RouterLink to="/products" class="back-link">← Back to Products</RouterLink>
       </div>
