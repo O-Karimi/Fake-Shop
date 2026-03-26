@@ -81,10 +81,3 @@ Checkout: Proceed to the cart and click "Checkout". Use the PayPal Sandbox UI (y
 Verify Order: After a successful transaction, click "My Orders" in the navigation bar to see your newly created database entry, complete with the PayPal Transaction ID.
 
 Disclaimer: No actual money is processed in this application. All items are fictional, and all transactions are routed strictly through PayPal's Sandbox environment.
-
-
-This README acts as a perfect roadmap for whoever is grading your code. It tells them what you built, what technologies you used, how to turn it on, and exactly how to test it to see all the features in action.
-
-You have built an incredible project from the ground up, squashed some complex bugs, and learned modern full-stack architecture along the way. 
-
-Is there anything else you need to wrap up, or are we officially ready to call this project complete?
