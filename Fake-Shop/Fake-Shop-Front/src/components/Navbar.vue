@@ -41,7 +41,8 @@ const handleLogout = () => {
             <button @click="handleLogout">Logout</button>
           </template>
           <template v-else>
-            <RouterLink to="/login" style="color: thistle;">Login</RouterLink>
+            <RouterLink to="/login" style="color: thistle;">Login</RouterLink> /
+            <RouterLink to="/register" style="color: thistle;">Register</RouterLink>
           </template>
         </div>
       </div>
@@ -54,8 +55,8 @@ const handleLogout = () => {
         <RouterLink to="/orders">My Orders</RouterLink>
         <RouterLink to="/profile">Profile</RouterLink>
       </template>
-      <RouterLink to="/register">Sign Up</RouterLink>
-<!--       <RouterLink to="/about">About</RouterLink>
+<!--       <RouterLink to="/register">Sign Up</RouterLink>
+ --><!--       <RouterLink to="/about">About</RouterLink>
       <RouterLink to="/contact">Contact</RouterLink>
  -->  <RouterLink to="/cart" class="cart-link">
         Cart ({{ cartStore.totalItems }})
