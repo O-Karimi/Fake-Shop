@@ -1,18 +1,20 @@
 <script setup>
+import { RouterLink } from 'vue-router'
 </script>
 <template>
       <header>
-      <h1><a href="#">Fake Store</a></h1>
+      <h1><RouterLink to="/">Fake Store</RouterLink></h1>
       <form>
           <input type="search" placeholder="Search..." style="margin-top: 1em;">
           <button type="submit">Search</button>
       </form>        
   </header>
   <nav>
-      <a href="/">Home</a>
-      <a href="/products">Products</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/products">Products</RouterLink>
+      <RouterLink to="/add-product">Add Product</RouterLink>
+      <RouterLink to="/about">About</RouterLink>
+      <RouterLink to="/contact">Contact</RouterLink>
   </nav>
 
 </template>
