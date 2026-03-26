@@ -80,3 +80,15 @@ Add to Cart: Add a few imaginary items to your shopping cart.
 Verify Order: After a successful transaction, click "My Orders" in the navigation bar to see your newly created database entry, complete with the PayPal Transaction ID.
 
 Disclaimer: No actual money is processed in this application. All items are fictional, and all transactions are routed strictly through PayPal's Sandbox environment.
+
+### 🐳 Running with Docker (Recommended)
+
+If you have Docker installed, you can spin up the entire full-stack application (frontend, backend, and Nginx web server) with a single command.
+
+1. Ensure [Docker Desktop](https://www.docker.com/products/docker-desktop/) is running on your machine.
+2. Open your terminal in the root directory of the project (where the `docker-compose.yml` file is located).
+3. Run the following command:
+
+```bash
+docker-compose up --build
+```
