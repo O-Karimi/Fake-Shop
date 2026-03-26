@@ -14,7 +14,10 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((error) => console.error('MongoDB connection error:', error));
 
 const productRoutes = require('./routes/productRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+
 app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 
 app.get('/', (req, res) => {
   res.send('E-commerce Backend is running!');
