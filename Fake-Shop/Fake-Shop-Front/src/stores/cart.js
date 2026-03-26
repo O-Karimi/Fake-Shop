@@ -22,9 +22,13 @@ export const useCartStore = defineStore('cart', () => {
     }
   };
 
+  const removeFromCart = (productId) => {
+    items.value = items.value.filter(item => item._id !== productId);
+  };
+
   const clearCart = () => {
     items.value = [];
   };
 
-  return { items, totalItems, cartTotal, addToCart, clearCart };
+  return { items, totalItems, cartTotal, addToCart, removeFromCart, clearCart };
 });
