@@ -1,41 +1,79 @@
 <script setup>
-const message = ref('Hello Vue!');
-  const products = ref([
-    { id: 1, name: 'Product 1', price: 10 },
-    { id: 2, name: 'Product 2', price: 20 },
-    { id: 3, name: 'Product 3', price: 30 }
-  ]);
+import { ref, onMounted } from 'vue';
+import { RouterLink } from 'vue-router';
+import api from '../api'; // This is the Axios setup we made earlier
 
+const products = ref([]);
+const loading = ref(true);
+const error = ref(null);
 
-const newProductName = ref('');
-const newProductPrice = ref(0);
-
-function addProduct() {
-  const newProduct = {
-    id: products.value.length + 1,
-    name: newProductName.value,
-    price: newProductPrice.value
-  };
-  products.value.push(newProduct);
-  newProductName.value = '';
-  newProductPrice.value = 0;
-}
+// This runs automatically when the page loads
+onMounted(async () => {
+  try {
+    const response = await api.get('/products');
+    products.value = response.data;
+  } catch (err) {
+    error.value = 'Failed to load products.';
+    console.error(err);
+  } finally {
+    loading.value = false;
+  }
+});
 </script>
 
 <template>
-  <main>
-    <section>
-      <h2>Products</h2>
-      <ul style="list-style-type: none; padding: 0; display: inline;">
-        <li v-for="product in products" :key="product.id" style="display: inline;">
-          {{ product.name }}: ${{ product.price }} |||| 
-        </li>
-      </ul>
-      <form @submit.prevent="addProduct">
-        <input type="text" v-model="newProductName" placeholder="Product Name" required><br> 
-        <input type="number" v-model="newProductPrice" placeholder="Product Price" required><br>
-        <button type="submit">Add Product</button>
-      </form>
-    </section>
-  </main>
+  <div class="product-page">
+    <h2>All Products</h2>
+    
+    <div v-if="loading">Loading products...</div>
+    <div v-else-if="error" class="error">{{ error }}</div>
+    <div v-else-if="products.length === 0">No products found. Add some!</div>
+    
+    <div v-else class="product-grid">
+      <div v-for="product in products" :key="product._id" class="product-card">
+        <img :src="product.imageUrl" :alt="product.title" />
+        <h3>{{ product.title }}</h3>
+        <p class="price">${{ product.price.toFixed(2) }}</p>
+        
+        <RouterLink :to="`/products/${product._id}`" class="btn">View Details</RouterLink>
+      </div>
+    </div>
+  </div>
 </template>
+
+<style scoped>
+.product-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.product-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  width: 220px;
+  text-align: center;
+  background: white;
+}
+.product-card img {
+  max-width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.price {
+  font-weight: bold;
+  color: #2c3e50;
+}
+.btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.error { color: red; }
+</style>
