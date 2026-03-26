@@ -13,6 +13,9 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Successfully connected to MongoDB!'))
   .catch((error) => console.error('MongoDB connection error:', error));
 
+const productRoutes = require('./routes/productRoutes');
+app.use('/api/products', productRoutes);
+
 app.get('/', (req, res) => {
   res.send('E-commerce Backend is running!');
 });
