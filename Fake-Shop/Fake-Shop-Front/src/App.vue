@@ -12,7 +12,7 @@ import router from './router';
   </footer>
 </template>
 
-<style scoped>
+<style >
   body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -31,5 +31,18 @@ import router from './router';
       position: fixed;
       width: 100%;
       bottom: 0;
+  }
+  section {
+    text-align: center;
+    margin-bottom: 2em;
+  }
+  .btn {
+    display: inline-block;
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
   }
 </style>

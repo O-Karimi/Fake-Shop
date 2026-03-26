@@ -18,21 +18,3 @@ import { ref } from 'vue';
       </section>
     </main>
 </template>
-<style scoped>
-  main {
-      padding: 1em;
-  }
-  section {
-    text-align: center;
-    margin-bottom: 2em;
-  }
-  .btn {
-    display: inline-block;
-    margin-top: 1em;
-    padding: 0.5em 1em;
-    background-color: #007BFF;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-  }
-</style>
