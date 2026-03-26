@@ -58,7 +58,7 @@ npm run dev
 ```
 (The server should log: "Server running on port 5000" and "MongoDB Connected")
 
-3. Frontend Setup
+### 3. Frontend Setup
 Open a new terminal window, navigate to the frontend directory, and install the dependencies:
 
 ```Bash
@@ -70,7 +70,7 @@ Start the Vue development server:
 ```Bash
 npm run dev
 ```
-🧪 How to Test the Application
+## 🧪 How to Test the Application
 Browse & Search: Open the frontend URL (http://localhost:5173) to view the landing page. Navigate to the store, search for items, and click on them to view details.
 
 Create an Account: Click "Sign Up" to create a mock user profile, then log in.
