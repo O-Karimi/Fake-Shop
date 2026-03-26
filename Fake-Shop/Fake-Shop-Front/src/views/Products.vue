@@ -1,16 +1,20 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { RouterLink } from 'vue-router';
-import api from '../api'; // This is the Axios setup we made earlier
+import { ref, onMounted, watch } from 'vue';
+import { useRoute,RouterLink } from 'vue-router';
+import api from '../api';
 
+const route = useRoute();
 const products = ref([]);
 const loading = ref(true);
 const error = ref(null);
 
-// This runs automatically when the page loads
-onMounted(async () => {
+const fetchProducts = async () => {
+  loading.value = true;
+  error.value = null;
   try {
-    const response = await api.get('/products');
+    const searchTerm = route.query.search || ''; 
+    
+    const response = await api.get(`/products?search=${searchTerm}`);
     products.value = response.data;
   } catch (err) {
     error.value = 'Failed to load products.';
@@ -18,23 +22,33 @@ onMounted(async () => {
   } finally {
     loading.value = false;
   }
+};
+
+onMounted(() => {
+  fetchProducts();
+});
+
+watch(() => route.query.search, () => {
+  fetchProducts();
 });
 </script>
 
 <template>
-  <div class="product-page">
-    <h2>All Products</h2>
+<div class="product-page">
+    <h2>
+      <span v-if="route.query.search">Search Results for "{{ route.query.search }}"</span>
+      <span v-else>All Products</span>
+    </h2>
     
     <div v-if="loading">Loading products...</div>
     <div v-else-if="error" class="error">{{ error }}</div>
-    <div v-else-if="products.length === 0">No products found. Add some!</div>
+    <div v-else-if="products.length === 0">No products match your search.</div>
     
     <div v-else class="product-grid">
       <div v-for="product in products" :key="product._id" class="product-card">
         <img :src="product.imageUrl" :alt="product.title" />
         <h3>{{ product.title }}</h3>
         <p class="price">${{ product.price.toFixed(2) }}</p>
-        
         <RouterLink :to="`/products/${product._id}`" class="btn">View Details</RouterLink>
       </div>
     </div>

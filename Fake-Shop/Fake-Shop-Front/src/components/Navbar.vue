@@ -1,13 +1,30 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { ref } from 'vue';
+import { RouterLink, useRouter } from 'vue-router';
+
+const router = useRouter();
+const globalSearch = ref('');
+
+const submitSearch = () => {
+  if (globalSearch.value.trim() !== '') {
+    router.push({ path: '/products', query: { search: globalSearch.value } });
+    
+    globalSearch.value = ''; 
+  }
+};
 </script>
 <template>
-      <header>
-      <h1><RouterLink to="/">Fake Store</RouterLink></h1>
-      <form>
-          <input type="search" placeholder="Search..." style="margin-top: 1em;">
-          <button type="submit">Search</button>
-      </form>        
+  <header>
+    <h1><RouterLink to="/">Fake Store</RouterLink></h1>
+    <form @submit.prevent="submitSearch" class="nav-search">
+    <input 
+        type="text" 
+        v-model="globalSearch" 
+        placeholder="Search store..." 
+        required
+    />
+    <button type="submit">Search</button>
+    </form>      
   </header>
   <nav>
       <RouterLink to="/">Home</RouterLink>
